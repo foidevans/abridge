@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abridge</title>
+ 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+
+  <body>
+    <div class="app" id="app" data-theme="light">
+
+      <header class="header">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">◈</span>
+          <span class="brand-name">Abridge</span>
+        </div>
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+          title="Toggle dark/light mode"
+        >
+          <span class="theme-icon" id="themeIcon">☽</span>
+        </button>
+      </header>
+
+   
+      <section class="page-info" id="pageInfo" aria-live="polite">
+        <p class="page-title" id="pageTitle">Loading page info…</p>
+      </section>
+
+      <section class="idle-state" id="idleState">
+        <p class="idle-hint">Click below to extract and summarize this page using AI.</p>
+        <button class="btn btn-primary" id="summarizeBtn" aria-label="Summarize this page">
+          Summarize Page
+        </button>
+      </section>
+
+      <section class="loading-state hidden" id="loadingState" aria-live="assertive" aria-label="Loading summary">
+        <div class="spinner" aria-hidden="true"></div>
+        <p class="loading-text" id="loadingText">Extracting content…</p>
+      </section>
+
+      <section class="error-state hidden" id="errorState" aria-live="assertive">
+        <p class="error-icon" aria-hidden="true">⚠</p>
+        <p class="error-message" id="errorMessage">Something went wrong.</p>
+        <button class="btn btn-secondary" id="retryBtn" aria-label="Retry summarization">
+          Try Again
+        </button>
+      </section>
+
+      <section class="result-state hidden" id="resultState">
+
+=        <div class="meta-row">
+          <span class="meta-pill" id="readingTime">— min read</span>
+          <span class="meta-pill" id="wordCount">— words</span>
+          <span class="meta-pill cache-pill hidden" id="cachePill" title="Loaded from cache">⚡ cached</span>
+        </div>
+
+        <div class="section-block">
+          <h2 class="section-label">Summary</h2>
+          <p class="summary-text" id="summaryText"></p>
+        </div>
+
+        <div class="section-block">
+          <h2 class="section-label">Key Insights</h2>
+          <ul class="insights-list" id="insightsList" aria-label="Key insights"></ul>
+        </div>
+
+        <div class="action-row">
+          <button class="btn btn-secondary" id="highlightBtn" aria-label="Highlight key phrases on page">
+            Highlight on Page
+          </button>
+          <button class="btn btn-ghost" id="copyBtn" aria-label="Copy summary to clipboard">
+            Copy
+          </button>
+          <button class="btn btn-ghost" id="clearBtn" aria-label="Clear summary and reset">
+            Clear
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
