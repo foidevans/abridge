@@ -137,8 +137,8 @@ function showError(message) {
 
 function setLoading(message) {
   loadingText.textContent = message;
-}
 
+}
 
 async function handleHighlight() {
   if (!currentTab?.id || !currentSummary) return;
@@ -150,20 +150,43 @@ async function handleHighlight() {
     return;
   }
 
-  const phrases = (currentSummary.keyInsights || [])
-    .map(insight => insight.split(' ').slice(0, 5).join(' '))
-    .filter(phrase => phrase.length > 3);
+  const phrasesToHighlight = [];
 
-  if (phrases.length === 0) return;
+  const insights = currentSummary.keyInsights || [];
+  insights.forEach(insight => {
+    const words = insight.replace(/[^\w\s]/g, "").split(/\s+/).filter(w => w.length > 0);
+    
+    for (let i = 0; i <= words.length - 3; i++) {
+      const trio = words.slice(i, i + 3).join(' ');
+      const quad = words.slice(i, i + 4).join(' ');
 
-  await sendMessageToTab(currentTab.id, {
-    type: 'HIGHLIGHT_CONTENT',
-    payload: { phrases }
+      if (!/^(the|and|is|was|that|this|with|for|they|he|she)\b/i.test(trio)) {
+        if (quad && i <= words.length - 4) phrasesToHighlight.push(quad);
+        phrasesToHighlight.push(trio);
+      }
+    }
   });
 
-  highlightsActive = true;
-  highlightBtn.textContent = 'Clear Highlights';
+  const summaryText = currentSummary.summary || "";
+  const summaryKeywords = summaryText.match(/\b(\w{6,})\b/g) || [];
+  summaryKeywords.forEach(word => phrasesToHighlight.push(word));
+
+  const finalSet = [...new Set(phrasesToHighlight)].filter(p => p.length > 3);
+
+  if (finalSet.length === 0) return;
+
+  const response = await sendMessageToTab(currentTab.id, {
+    type: 'HIGHLIGHT_CONTENT',
+    payload: { phrases: finalSet.slice(0, 60) } 
+  });
+
+  if (response?.success) {
+    highlightsActive = true;
+    highlightBtn.textContent = 'Clear Highlights';
+  }
 }
+
+
 
 async function handleCopy() {
   if (!currentSummary) return;

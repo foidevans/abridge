@@ -12,19 +12,19 @@
   --text-primary: #1a1816;
   --text-secondary: #6b6560;
   --text-muted: #9e9890;
-  --accent: #c0392b;
-  --accent-hover: #a93226;
+  --accent: #BF40BF;
+  --accent-hover: #891989;
   --border: #e5e2dd;
   --pill-bg: #ede9e3;
   --pill-text: #5c574f;
-  --spinner-color: #c0392b;
+  --spinner-color: #BF40BF;
   --shadow: 0 1px 3px rgba(0,0,0,0.08);
 
-  --font-ui: 'DM Sans', sans-serif;
-  --font-display: 'Lora', serif;
+  --font-ui: 'Poppins', sans-serif;
+  --font-display: 'Poppins', serif;
 
-  --radius: 8px;
-  --radius-sm: 4px;
+  --radius: 12px;
+  --radius-sm: 8px;
 }
 
 /* Dark theme */
@@ -34,12 +34,12 @@
   --text-primary: #f0ede8;
   --text-secondary: #a09890;
   --text-muted: #6b6560;
-  --accent: #e05c4d;
-  --accent-hover: #c94e3f;
+  --accent: #BF40BF;
+  --accent-hover: #891989;
   --border: #2a2724;
   --pill-bg: #252220;
   --pill-text: #a09890;
-  --spinner-color: #e05c4d;
+  --spinner-color: #BF40BF;
   --shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
@@ -306,7 +306,8 @@ body {
 
 .btn:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(191, 64, 191, 0.3);
 }
 
 .btn:disabled {
@@ -356,4 +357,9 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
