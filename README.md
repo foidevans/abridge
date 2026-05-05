@@ -56,7 +56,6 @@ abridge/
 ├── manifest.json         # Extension config — Vercel host permissions
 ├── background.js         # Service worker — Proxy coordination, caching, rate limiting
 ├── content.js            # Injected into pages — DOM extraction, smart highlighting
-├── content.css           # In-page styles for highlights
 ├── popup/
 │   ├── popup.html        # UI shell
 │   ├── popup.css         # Styles with CSS custom properties (dark/light)
