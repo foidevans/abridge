@@ -21,31 +21,26 @@ A Chrome Extension (Manifest V3) that extracts meaningful content from any webpa
 ## Setup Instructions
 
 1. **Clone the repository**
-  ```bash
-  git clone https://github.com/foidevans/abridge.git
-  cd abridge
-  ```
-2. **Set up the Proxy Server**
-  - Create a Vercel project using the provided `/api` directory.
-  - Add your `GEMINI_API_KEY` to Vercel's Environment Variables.
-  - Deploy the project and copy your Deployment URL.
-  - Open `background.js` and update the `PROXY_URL`:
-    ```js
-    const PROXY_URL = 'https://gemini-proxy-nine-iota.vercel.app/api/summarize';
-;
-    ```
-3. **Load the extension in Chrome**
-  - Open Chrome and go to `chrome://extensions`
-  - Enable Developer Mode (top-right toggle)
-  - Click **Load unpacked**
-  - Select the `abridge` folder
-  - The extension icon appears in your toolbar
+```bash
+   git clone https://github.com/foidevans/abridge.git
+   cd abridge
+```
 
-4. **Use it**
-  - Navigate to any article or blog post
-  - Click the Abridge icon
-  - Click **Summarize Page**
-  - Read your summary and click **Highlight on Page** to see key facts in-situ
+2. **Load the extension in Chrome**
+   - Open Chrome and go to `chrome://extensions`
+   - Enable **Developer Mode** (top-right toggle)
+   - Click **Load unpacked**
+   - Select the `abridge` folder
+   - The Abridge icon appears in your toolbar — click the 🧩 puzzle icon to pin it
+
+3. **Use it**
+   - Navigate to any article or blog post
+   - Click the Abridge icon in your toolbar
+   - Click **Summarize Page**
+   - Read your summary
+   - Click **Highlight on Page** to highlight key terms in the article
+   - Toggle dark/light mode with the ☽ button
+   - Click **Copy** to copy the summary to clipboard
 
 ---
 
